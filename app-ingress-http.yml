@@ -10,72 +10,33 @@ spec:
   tls:
     - hosts:
         - api.eomcs.com
-        - auth.eomcs.com
-        - board.eomcs.com
+        - hello.eomcs.com
       secretName: app-ingress-tls
   rules:
     - host: api.eomcs.com
-      http:
-        paths:
-          - path: /auth
-            pathType: Prefix
-            backend:
-              service:
-                name: auth-server-service
-                port:
-                  number: 80
-          - path: /board
-            pathType: Prefix
-            backend:
-              service:
-                name: board-server-service
-                port:
-                  number: 80
-    - host: auth.eomcs.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: auth-ui-service
+                name: hello-api-service
                 port:
                   number: 80
-          - path: /auth
-            pathType: Prefix
-            backend:
-              service:
-                name: auth-ui-service
-                port:
-                  number: 80
-          - path: /members
-            pathType: Prefix
-            backend:
-              service:
-                name: auth-ui-service
-                port:
-                  number: 80
-          - path: /_next/
-            pathType: Prefix
-            backend:
-              service:
-                name: auth-ui-service
-                port:
-                  number: 80           
-    - host: board.eomcs.com
+    - host: hello.eomcs.com
       http:
-        paths:                       
-          - path: /boards
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: board-ui-service
+                name: hello-ui-service
                 port:
                   number: 80
           - path: /_next/
             pathType: Prefix
             backend:
               service:
-                name: board-ui-service
+                name: hello-ui-service
                 port:
                   number: 80
